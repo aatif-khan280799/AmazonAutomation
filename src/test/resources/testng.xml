@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<suite name = "Amazon Suite">
+    <test name = "Amazon Test">
+        <classes>
+            <class name = "org.example.tests.AmazonSearchTest"/>
+        </classes>
+    </test>
+</suite>
