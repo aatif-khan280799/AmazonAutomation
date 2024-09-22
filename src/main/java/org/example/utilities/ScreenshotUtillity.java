@@ -8,12 +8,20 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Date;
 
 public class ScreenshotUtillity {
+
+    // Get the current timestamp
+    static SimpleDateFormat dateFormat = new SimpleDateFormat("yyMMdd_HHmmss");
+    static String timestamp = dateFormat.format(new Date());
+    static long now = Instant.now().toEpochMilli();
+
+
     public static String captureScreenshot(WebDriver driver, String screenshotName) {
-        String destinationPath = System.getProperty("user.dir") + "/screenshots/" + screenshotName + ".png";
-//        D:\Users\co02326\OneDrive - Oriental Bank\Desktop\UploadID\UploadID\front-1.JPG
-//        src/java/com/example/screenshots/screenshotName1.png
+        String destinationPath = System.getProperty("user.dir") + "/screenshots/" + screenshotName + now +".png"  ;
 
         TakesScreenshot ts = (TakesScreenshot) driver;
         File source = ts.getScreenshotAs(OutputType.FILE);

@@ -17,6 +17,8 @@ import org.testng.annotations.*;
 import java.io.IOException;
 import java.time.Duration;
 
+import static org.example.utilities.ScreenshotNew.captureNewScreenshot;
+
 public class AmazonSearchTest {
     WebDriver driver;
     AmazonHomePage amazonHomePage;
@@ -49,13 +51,15 @@ public class AmazonSearchTest {
     }
 
     @Test(dataProvider = "excelData")
-    public void searchProduct(String productName){
+    public void searchProduct(String productName)  {
         test = ExtentManager.createTest("Search Product: " + productName);
         amazonHomePage.searchProduct(productName);
         test.log(Status.INFO, "Searching for product: " + productName);
 
         amazonSearchResultsPage.clickFirstProduct();
         test.log(Status.INFO, "Clicked on the first product in search results");
+//        ScreenshotUtillity.captureScreenshot(driver, productName);
+
     }
 
     @AfterMethod
@@ -63,12 +67,16 @@ public class AmazonSearchTest {
         if(result.getStatus() == ITestResult.FAILURE){
             String screenshotPath = ScreenshotUtillity.captureScreenshot(driver, result.getName());
             test.log(Status.FAIL, "Test Failed: " + result.getThrowable());
-
             test.addScreenCaptureFromPath(screenshotPath, result.getName());
         }else if (result.getStatus() == ITestResult.SUCCESS){
+            String screenshotPath = ScreenshotUtillity.captureScreenshot(driver, result.getName());
             test.log(Status.PASS, "Test Passed");
+            test.addScreenCaptureFromPath(screenshotPath, result.getName());
+
         }else if(result.getStatus() == ITestResult.SKIP){
+            String screenshotPath = ScreenshotUtillity.captureScreenshot(driver, result.getName());
             test.log(Status.SKIP, "Test Skipped: " + result.getThrowable());
+            test.addScreenCaptureFromPath(screenshotPath, result.getName());
         }
         driver.quit();
     }
