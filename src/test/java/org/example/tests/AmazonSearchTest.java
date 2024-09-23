@@ -13,11 +13,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
-
 import java.io.IOException;
 import java.time.Duration;
-
-import static org.example.utilities.ScreenshotNew.captureNewScreenshot;
 
 public class AmazonSearchTest {
     WebDriver driver;

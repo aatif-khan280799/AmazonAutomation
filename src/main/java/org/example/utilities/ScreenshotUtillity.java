@@ -17,6 +17,7 @@ public class ScreenshotUtillity {
     // Get the current timestamp
     static SimpleDateFormat dateFormat = new SimpleDateFormat("yyMMdd_HHmmss");
     static String timestamp = dateFormat.format(new Date());
+
     static long now = Instant.now().toEpochMilli();
 
 
